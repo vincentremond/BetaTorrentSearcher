@@ -1,0 +1,6 @@
+.torrent-search-sites .torrent-search-site { display: inline-block; width: 16px; height: 16px; border: 0px solid #CCC; margin-right: 3px; cursor: pointer; }
+.torrent-search-sites .torrent-search-site--tpb           { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/tpb.png');          }
+.torrent-search-sites .torrent-search-site--eztv          { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/eztv.png');         }
+.torrent-search-sites .torrent-search-site--torrentz      { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/torrentz.png');     }
+.torrent-search-sites .torrent-search-site--kickass       { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/kickass.png');      }
+.torrent-search-sites .torrent-search-site--extratorrent  { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/extratorrent.png'); }

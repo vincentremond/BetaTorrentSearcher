@@ -1,0 +1,36 @@
+{
+	"name": "BetaTorrentSearcher",
+	"version": "2.5.0",
+	"manifest_version": 2,
+	"description": "Add quick search icons.",
+	"icons":
+		{	"16":	"images/icons/icon_16.png"
+		,	"48":	"images/icons/icon_48.png"
+		,	"128":	"images/icons/icon_128.png"
+		},
+	"web_accessible_resources":
+		[ "images/favicons/eztv.png"
+		, "images/favicons/kickass.png"
+		, "images/favicons/tpb.png"
+		, "images/favicons/torrentz.png"
+		, "images/favicons/extratorrent.png"
+		],
+	"content_scripts": [
+		{
+			"css":
+				[ "css/myStyles.css"
+				],
+			"js":
+				[ "js/jquery-1.7.2.min.js"
+				, "js/jquery-ui-1.8.22.custom.min.js"
+				, "js/jquery-postblank-1.0.0.js"
+				, "js/BetaTorrentSearcher.js"
+				, "js/myScript.js"
+				],
+			"matches":
+				[ "http://www.betaseries.com/*"
+				, "https://www.betaseries.com/*"
+				]
+		}
+	]
+}
