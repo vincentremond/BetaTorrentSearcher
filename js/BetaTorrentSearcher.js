@@ -10,7 +10,7 @@ var BetaTorrentSearcher = {
 			Search: function(title, episode) {
 				jQuery.postblank({
 					method: 'GET',
-					action: 'https://thepiratebay.se/s/',
+					action: 'https://thepiratebay.org/s/',
 					data: {
 						q: (title + ' ' + episode),
 						category: 0,
