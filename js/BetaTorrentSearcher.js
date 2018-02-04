@@ -85,6 +85,8 @@ var BetaTorrentSearcher = {
 					data: {
 						search: title + ' ' + episode,
 						category: '1;18;41;49',
+						order: 'seeders',
+						by: 'DESC'
 					}
 				});
 			}
