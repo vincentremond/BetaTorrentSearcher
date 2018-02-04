@@ -4,10 +4,10 @@ var BetaTorrentSearcher = {
 	CheckStack: [],
 
 	Sites: {
-		tpb : {
+		tpb: {
 			Enabled: true,
 			Name: 'The Pirate Bay',
-			Search: function(title, episode) {
+			Search: function (title, episode) {
 				jQuery.postblank({
 					method: 'GET',
 					action: 'https://thepiratebay.org/s/',
@@ -20,10 +20,10 @@ var BetaTorrentSearcher = {
 				});
 			}
 		},
-		eztv : {
+		eztv: {
 			Enabled: true,
 			Name: 'EZTV.it',
-			Search: function(title, episode) {
+			Search: function (title, episode) {
 				jQuery.postblank({
 					method: 'GET',
 					action: 'https://eztv.ag/search/',
@@ -31,10 +31,10 @@ var BetaTorrentSearcher = {
 				});
 			}
 		},
-		torrentz : {
+		torrentz: {
 			Enabled: false,
 			Name: 'Torrentz.eu',
-			Search: function(title, episode) {
+			Search: function (title, episode) {
 				jQuery.postblank({
 					method: 'GET',
 					action: 'https://torrentz.eu/search',
@@ -44,13 +44,13 @@ var BetaTorrentSearcher = {
 				});
 			}
 		},
-		kickass : {
+		kickass: {
 			Enabled: false,
 			Name: 'Kickass Torrent',
-			Search: function(title, episode) {
+			Search: function (title, episode) {
 				jQuery.postblank({
 					method: 'GET',
-					action: 'http://kat.ph/usearch/' + encodeURIComponent(title) + ' ' + encodeURIComponent(episode) +'/',
+					action: 'http://kat.ph/usearch/' + encodeURIComponent(title) + ' ' + encodeURIComponent(episode) + '/',
 					data: {
 						field: 'seeders',
 						sorder: 'desc',
@@ -58,10 +58,10 @@ var BetaTorrentSearcher = {
 				});
 			}
 		},
-		extratorrent : {
-			Enabled: true,
+		extratorrent: {
+			Enabled: false,
 			Name: 'Extra Torrent',
-			Search: function(title, episode) {
+			Search: function (title, episode) {
 				jQuery.postblank({
 					method: 'GET',
 					action: 'http://extratorrent.cc/search/',
@@ -74,41 +74,55 @@ var BetaTorrentSearcher = {
 					}
 				});
 			}
+		},
+		rarbg: {
+			Enabled: true,
+			Name: 'RARBG',
+			Search: function (title, episode) {
+				jQuery.postblank({
+					method: 'GET',
+					action: 'https://rarbgproxy.org/torrents.php',
+					data: {
+						search: title + ' ' + episode,
+						category: '1;18;41;49',
+					}
+				});
+			}
 		}
 	},
 
-	GoBabyGoGo: function() {
+	GoBabyGoGo: function () {
 
-		jQuery(function() {
+		jQuery(function () {
 			BetaTorrentSearcher.Check();
 			jQuery(document).bind('DOMNodeInserted', BetaTorrentSearcher.Check);
 		});
 	},
 
-	Check: function() {
+	Check: function () {
 		BetaTorrentSearcher.CheckCount++;
 		BetaTorrentSearcher.CheckStack.unshift(BetaTorrentSearcher.CheckCount);
 		setTimeout(BetaTorrentSearcher.DoCheck, 30);
 	},
 
-	DoCheck: function() {
+	DoCheck: function () {
 		if (BetaTorrentSearcher.CheckStack.length > 0) {
 			BetaTorrentSearcher.CheckStack.pop();
 		}
-		if(BetaTorrentSearcher.CheckStack.length == 0) {
+		if (BetaTorrentSearcher.CheckStack.length == 0) {
 			console.log(new Date() + ' BetaTorrentSearcher.DoCheck');
 			var html = '<span class="torrent-search-sites">';
-			for(var site in BetaTorrentSearcher.Sites) {
+			for (var site in BetaTorrentSearcher.Sites) {
 				var siteData = BetaTorrentSearcher.Sites[site];
-				if(siteData.Enabled) {
+				if (siteData.Enabled) {
 					html += '<span class="torrent-search-site torrent-search-site--' + site + '" data-site="' + site + '" title="' + siteData.Name + '"></span>'
 				}
 			}
 			html += '</span> &mdash; ';
 
-			jQuery('.episodes .episode:not(.torrent-checked)').each(function(index, Element) {
+			jQuery('.episodes .episode:not(.torrent-checked)').each(function (index, Element) {
 
-				if(!jQuery(this).hasClass('torrent-checked')) {
+				if (!jQuery(this).hasClass('torrent-checked')) {
 					// add token class for already processed
 					jQuery(this).addClass('torrent-checked');
 					// add torrents sites links
@@ -121,7 +135,7 @@ var BetaTorrentSearcher = {
 		}
 	},
 
-	StartSearch: function() {
+	StartSearch: function () {
 		var $title = jQuery(this).parents('.episode-titre:first').find('a.ep');
 		var title = BetaTorrentSearcher.CleanTitle($title.text());
 		var episode = $title.siblings('a:first').text();
@@ -129,18 +143,18 @@ var BetaTorrentSearcher = {
 		site.Search(title, episode);
 	},
 
-	CleanTitle: function(title) {
+	CleanTitle: function (title) {
 		return title.replace(/'s\b/gi, ' ')
-		            .replace(/:/gi, '')
-		            .replace(/\s+/gi, ' ')
-		            .replace(/CSI Crime Scene Investigation/gi, 'CSI')
-		            .replace(/^The /gi, '')
-		            .replace(/ \(20[0-9][0-9]\)/gi, '')
-		            .replace(/20[0-9][0-9]/gi, '')
-		            .replace(/20[0-9][0-9]/gi, '')
-		            .replace(/CSI NY/gi, 'CSI New York')
-		            .replace(/House of Cards \(US\)/gi, 'House of Cards')
-		            .replace(/You're the Worst/gi, 'Youre the Worst')
-		            ;
+			.replace(/:/gi, '')
+			.replace(/\s+/gi, ' ')
+			.replace(/CSI Crime Scene Investigation/gi, 'CSI')
+			.replace(/^The /gi, '')
+			.replace(/ \(20[0-9][0-9]\)/gi, '')
+			.replace(/20[0-9][0-9]/gi, '')
+			.replace(/20[0-9][0-9]/gi, '')
+			.replace(/CSI NY/gi, 'CSI New York')
+			.replace(/House of Cards \(US\)/gi, 'House of Cards')
+			.replace(/You're the Worst/gi, 'Youre the Worst')
+			;
 	}
 };

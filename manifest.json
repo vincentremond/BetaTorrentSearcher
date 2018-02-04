@@ -14,6 +14,7 @@
 		, "images/favicons/tpb.png"
 		, "images/favicons/torrentz.png"
 		, "images/favicons/extratorrent.png"
+		, "images/favicons/rarbg.png"
 		],
 	"content_scripts": [
 		{

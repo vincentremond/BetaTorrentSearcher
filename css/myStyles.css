@@ -4,3 +4,4 @@
 .torrent-search-sites .torrent-search-site--torrentz      { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/torrentz.png');     }
 .torrent-search-sites .torrent-search-site--kickass       { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/kickass.png');      }
 .torrent-search-sites .torrent-search-site--extratorrent  { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/extratorrent.png'); }
+.torrent-search-sites .torrent-search-site--rarbg         { background-image:url('chrome-extension://__MSG_@@extension_id__/images/favicons/rarbg.png');        }
